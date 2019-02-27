@@ -46,4 +46,30 @@ public class PostController {
         postDao.save(post);
         return "redirect:/posts";
     }
+
+    @GetMapping("/posts/{id}/edit")
+    public String edit(@PathVariable long id, Model model) {
+        Post post = postDao.findOne(id);
+        model.addAttribute("post", post);
+        return "posts/edit";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String update(@PathVariable long id,
+                         @RequestParam(name = "title") String title,
+                         @RequestParam(name = "body") String body,
+                         Model model){
+        Post post = postDao.findOne(id);
+        post.setTitle(title);
+        post.setBody(body);
+        postDao.save(post);
+        return "redirect:/posts/" + id;
+    }
+
+    @GetMapping("/posts/delete")
+    public String delete(@RequestParam(name = "id"), long id){
+        Post post = postDao.findOne(id);
+        postDao.delete(post);
+        return "redirect:/posts";
+    }
 }
