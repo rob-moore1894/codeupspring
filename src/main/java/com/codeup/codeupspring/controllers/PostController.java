@@ -6,9 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class PostController {
     private final PostRepository postDao;
@@ -32,17 +29,13 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    public String showForm(){
+    public String showForm(Model model){
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String create(
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "body") String body
-            ){
-
-        Post post = new Post(title, body);
+    public String create(@ModelAttribute Post post) {
         postDao.save(post);
         return "redirect:/posts";
     }
@@ -54,7 +47,7 @@ public class PostController {
         return "posts/edit";
     }
 
-    @GetMapping("/posts/{id}/edit")
+    @PostMapping("/posts/{id}/edit")
     public String update(@PathVariable long id,
                          @RequestParam(name = "title") String title,
                          @RequestParam(name = "body") String body,
@@ -66,10 +59,10 @@ public class PostController {
         return "redirect:/posts/" + id;
     }
 
-    @GetMapping("/posts/delete")
-    public String delete(@RequestParam(name = "id"), long id){
-        Post post = postDao.findOne(id);
-        postDao.delete(post);
-        return "redirect:/posts";
-    }
+//    @PostMapping("/posts/delete")
+//    public String delete(@RequestParam(name = "id"), long id){
+//        Post post = postDao.findOne(id);
+//        postDao.delete(post);
+//        return "redirect:/posts";
+//    }
 }

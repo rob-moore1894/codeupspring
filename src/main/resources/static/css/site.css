@@ -1,0 +1,29 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+h1, #logo, .header {
+    font-family: 'Allerta Stencil', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.title, .body, .description {
+    width: 90%;
+}

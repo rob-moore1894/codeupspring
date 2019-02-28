@@ -5,10 +5,19 @@
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<main>
+<main class="container">
 
-    <h2>Create a new post</h2>
-    <form th:action="@{/posts/create}" th:method="post">
+    <header class="header">Create a new post</header>
+    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+        Title:
+        <input class="title" th:field="*{title}" />
+        <br />
+        Description:
+        <input class="description" th:field="*{description}" />
+        <br />
+        Body:
+        <input class="body" type="text" th:field="*{body}" />
+        <input type="submit" />
 
     </form>
 </main>

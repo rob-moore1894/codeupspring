@@ -8,24 +8,34 @@ public class Post {
     @Id @GeneratedValue
     private long id;
 
-    @Column(nullable = false, length = 128)
+    @Column(nullable = false, length = 256)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 256)
+    private String description;
+
+    @Column(nullable = false, columnDefinition = "text")
     private String body;
 
-    public Post(long id, String title, String body) {
+    public Post(long id, String title, String description, String body) {
         this.id = id;
         this.title = title;
+        this.description = description;
         this.body = body;
+    }
+
+    public Post(long id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
     }
 
     public Post(){
     }
 
-    public Post(String title, String body) {
+    public Post(String title, String description) {
         this.title = title;
-        this.body = body;
+        this.description = description;
     }
 
     public long getId() {
@@ -50,5 +60,13 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
