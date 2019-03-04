@@ -17,11 +17,15 @@ public class Post {
     @Column(nullable = false, columnDefinition = "text")
     private String body;
 
-    public Post(long id, String title, String description, String body) {
+    @OneToOne
+    private User user;
+
+    public Post(long id, String title, String description, String body, User user) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.body = body;
+        this.user = user;
     }
 
     public Post(long id, String title, String description) {
@@ -30,12 +34,14 @@ public class Post {
         this.description = description;
     }
 
+
     public Post(){
     }
 
-    public Post(String title, String description) {
+    public Post(String title, String description, User user) {
         this.title = title;
         this.description = description;
+        this.user = user;
     }
 
     public long getId() {
@@ -68,5 +74,13 @@ public class Post {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
