@@ -17,8 +17,18 @@ public class Post {
     @Column(nullable = false, columnDefinition = "text")
     private String body;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn (name = "user_id")
     private User user;
+
+
+
+    public Post(String title, String description, String body, User user) {
+        this.title = title;
+        this.description = description;
+        this.body = body;
+        this.user = user;
+    }
 
     public Post(long id, String title, String description, String body, User user) {
         this.id = id;
@@ -83,4 +93,7 @@ public class Post {
     public void setUser(User user) {
         this.user = user;
     }
+
+
+
 }
