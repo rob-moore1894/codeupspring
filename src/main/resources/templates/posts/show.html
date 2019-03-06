@@ -7,9 +7,10 @@
 
 <main class="container">
 
-    <span>Title: </span><p th:text="${post.title}"></p>
+    <div class="header" th:text="${post.title}"></div>
     <span>Description: </span> <p th:text="${post.description}"></p>
-    <span>Body: </span><p th:text="${post.body}"></p>
+    <span>Email: </span> <p th:text="${post.user.email}"></p>
+    <article th:text="${post.body}"></article>
 
     <a class="btn btn-primary" th:href="@{/posts/{id}/edit(id=${post.id})}" role="button">Edit</a>
     <form class="btn d-inline" th:action="@{/posts/delete}" th:method="POST">

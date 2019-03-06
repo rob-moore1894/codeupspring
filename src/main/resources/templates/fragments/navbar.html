@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>Title</title>
@@ -22,6 +22,21 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/posts/create}">Create a Post</a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/login}" th:method="POST">
+                        <button class="btn-link btn">Login</button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/sign-up}" th:method="POST">
+                        <button class="btn-link btn">Sign Up!</button>
+                    </form>
                 </li>
             </ul>
         </div>

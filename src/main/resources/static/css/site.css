@@ -27,3 +27,8 @@ h1, #logo, .header {
 .title, .body, .description {
     width: 90%;
 }
+
+article {
+    border: solid 1px black;
+    margin: 1rem auto;
+}

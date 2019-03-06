@@ -7,11 +7,17 @@
 
 <main class="container">
 
-    <header class="header">Create a new post</header>
-    <form th:action="@{/posts/create}" th:method="post">
-        <label for="edit">
-            <input type="text" name="id" value="edit" id="edit"/>
-        </label>
+    <header class="header">Edit Post</header>
+    <form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="POST" th:object="${post}">
+        Title:
+        <input class="title" th:field="*{title}" />
+        <br />
+        Description:
+        <input class="description" th:field="*{description}" />
+        <br />
+        Body:
+        <input class="body" type="text" th:field="*{body}" />
+        <input type="submit" />
     </form>
 </main>
 
