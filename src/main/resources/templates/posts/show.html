@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"lang="en">
 <head th:replace="fragments/header :: header('Post Details')"></head>
 <body>
 
@@ -12,10 +12,12 @@
     <span>Email: </span> <p th:text="${post.user.email}"></p>
     <article th:text="${post.body}"></article>
 
-    <a class="btn btn-primary" th:href="@{/posts/{id}/edit(id=${post.id})}" role="button">Edit</a>
-    <form class="btn d-inline" th:action="@{/posts/delete}" th:method="POST">
-        <button class="btn btn-danger" th:value="${post.id}" th:name="id">Delete</button>
-    </form>
+    <div sec:authorize="isAuthenticated()">
+        <a class="btn btn-primary" th:href="@{/posts/{id}/edit(id=${post.id})}" role="button">Edit</a>
+        <form class="btn d-inline" th:action="@{/posts/delete}" th:method="POST">
+            <button class="btn btn-danger" th:value="${post.id}" th:name="id">Delete</button>
+        </form>
+    </div>
     <div>
         <a th:href="'/posts'"><button>Go back</button></a>
     </div>

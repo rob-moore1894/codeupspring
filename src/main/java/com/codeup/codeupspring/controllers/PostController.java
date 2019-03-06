@@ -54,10 +54,9 @@ public class PostController {
     public String create(@ModelAttribute Post post) {
         User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userDB = userDao.findOne(sessionUser.getId());
-
-        String email = sessionUser.getEmail();
+        post.setUser(userDB);
         Post savedPost = postDao.save(post);
-        emailService.prepareAndSend(savedPost, "Post Created Successfully", "Your post was created " + savedPost.getId());
+//        emailService.prepareAndSend(savedPost, "Post Created Successfully", "Your post was created " + savedPost.getId());
         return "redirect:/posts";
     }
 

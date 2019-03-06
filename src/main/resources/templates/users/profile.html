@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/header :: header('Post Details')"></head>
+<body>
+
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <main class="container">
+        <div class="header">Welcome, <span th:text="${user.username}"></span></div>
+        <div th:each="post : ${user.getPosts()}">
+
+            <a th:href="@{/posts/{id}(id=${post.id})}"><h2 th:text="${post.title}"></h2></a>
+            <h3 th:text="${post.description}"></h3>
+
+            <hr />
+        </div>
+    </main>
+
+</body>
+</html>
