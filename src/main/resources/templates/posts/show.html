@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
 <head th:replace="fragments/header :: header('Post Details')"></head>
 <body>
 
@@ -8,8 +8,8 @@
 <main class="container">
 
     <div class="header" th:text="${post.title}"></div>
-    <span>Description: </span> <p th:text="${post.description}"></p>
-    <span>Email: </span> <p th:text="${post.user.email}"></p>
+    <h3 style="text-align: center; margin-top: .5rem" th:text="${post.description}"></h3>
+    <span>Authored By: </span> <p th:text="${post.user.username}"></p>
     <article th:text="${post.body}"></article>
 
     <div sec:authorize="isAuthenticated()">
