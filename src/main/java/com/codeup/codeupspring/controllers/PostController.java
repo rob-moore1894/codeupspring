@@ -56,7 +56,7 @@ public class PostController {
         User userDB = userDao.findOne(sessionUser.getId());
         post.setUser(userDB);
         Post savedPost = postDao.save(post);
-//        emailService.prepareAndSend(savedPost, "Post Created Successfully", "Your post was created " + savedPost.getId());
+        emailService.prepareAndSend(savedPost, "Post Created Successfully", "Your post was created " + savedPost.getId());
         return "redirect:/posts";
     }
 
